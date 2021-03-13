@@ -1,0 +1,34 @@
+<!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <script crossorigin src="https://cdn.jsdelivr.net/npm/keen-dashboard-builder@2.0.11/dist/viewer.min.js"></script>
+    </head>
+    <body>
+      <div id="viewer"></div>
+      <script>
+
+        const url = "https://keen.io/dashboard/5fe12360affdd03fe42d5744";
+
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const projectId = "5ed185705d252374a3565553";
+          const masterKey = "FF55B57865AA8F43406FC767219E6E260EAD04F9A590EE32D47EAB40EDA2DF5B";
+          const dashboardInfo = data;
+          const myDashboardViewer = new DashboardViewer({
+            container: "#viewer",
+            isDashboardPublic: true,
+            dashboardInfo,
+            keenAnalysis: {
+              config: {
+                projectId,
+                masterKey,
+              }
+            }
+          });
+        })
+        .catch(e => console.error(e))
+      </script>
+    </body>
+  </html>
